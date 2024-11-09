@@ -6,7 +6,6 @@ import { auth } from "@clerk/nextjs/server";
 export const GET = async (req: Request) => {
 	try {
 		await connectToDB();
-		console.log("hey");
 
 		const { sessionClaims, userId } = await auth();
 		if (!sessionClaims) {

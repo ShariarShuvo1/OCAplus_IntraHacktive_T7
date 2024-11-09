@@ -1,13 +1,5 @@
 "use client";
-import {
-	Home,
-	BarChart3,
-	Settings,
-	User,
-	Club,
-	Users,
-	Link,
-} from "lucide-react";
+import { User, Users, House } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export default function RootLayout({
@@ -36,6 +28,13 @@ export default function RootLayout({
 					>
 						<User className="w-6 h-6" />
 						<span className="hidden lg:inline">Profile</span>
+					</div>
+					<div
+						onClick={() => router.push("/dashboard/oca/rooms")}
+						className="flex cursor-pointer flex-col lg:flex-row items-center gap-2 text-gray-300 hover:text-white p-2"
+					>
+						<House className="w-6 h-6" />
+						<span className="hidden lg:inline">Rooms</span>
 					</div>
 				</nav>
 			</aside>
