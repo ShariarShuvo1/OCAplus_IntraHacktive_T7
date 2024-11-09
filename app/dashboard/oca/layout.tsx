@@ -30,6 +30,13 @@ export default function RootLayout({
 						<Users className="w-6 h-6" />
 						<span className="hidden lg:inline">Add Club</span>
 					</div>
+					<div
+						onClick={() => router.push("/dashboard/oca/profile")}
+						className="flex cursor-pointer flex-col lg:flex-row items-center gap-2 text-gray-300 hover:text-white p-2"
+					>
+						<User className="w-6 h-6" />
+						<span className="hidden lg:inline">Profile</span>
+					</div>
 				</nav>
 			</aside>
 			{children}

@@ -6,6 +6,7 @@ import { auth } from "@clerk/nextjs/server";
 export const GET = async (req: Request) => {
 	try {
 		await connectToDB();
+		console.log("hey");
 
 		const { sessionClaims, userId } = await auth();
 		if (!sessionClaims) {
@@ -16,6 +17,7 @@ export const GET = async (req: Request) => {
 		}
 
 		const user = await User.findOne({ clerkID: userId });
+
 		if (!user) {
 			return NextResponse.json(
 				{ message: "User not found" },
@@ -30,7 +32,6 @@ export const GET = async (req: Request) => {
 			{ status: 200 }
 		);
 	} catch (err) {
-		console.log(err);
 		return NextResponse.json(
 			{ message: "Internal server error" },
 			{ status: 500 }

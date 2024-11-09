@@ -6,10 +6,9 @@ import { Spin } from "antd";
 
 import { useState } from "react";
 
-export default function AddClub() {
-	const [clubName, setClubName] = useState("");
+export default function AddMember() {
 	const [presidentEmail, setPresidentEmail] = useState("");
-	const [instructorEmail, setInstructorEmail] = useState("");
+	const [designation, setDesignation] = useState("president");
 	const [success, setSuccess] = useState("");
 	const [error, setError] = useState("");
 	const [loading, setLoading] = useState(false);
@@ -18,20 +17,16 @@ export default function AddClub() {
 		e.preventDefault();
 		try {
 			setLoading(true);
-			const res = await fetch("/api/dashboard/oca/add-club", {
+			const res = await fetch("/api/dashboard/instructor/add-member", {
 				method: "POST",
-				body: JSON.stringify({
-					clubName,
-					presidentEmail,
-					instructorEmail,
-				}),
+				body: JSON.stringify({ presidentEmail, designation }),
 			});
 			const data = await res.json();
 			if (res.ok) {
 				setSuccess(data.message);
 				setError("");
-				setClubName("");
 				setPresidentEmail("");
+				setDesignation("vicepresident");
 			} else {
 				setError(data.message);
 				setSuccess("");
@@ -51,44 +46,37 @@ export default function AddClub() {
 				className="bg-black p-8 rounded-lg shadow-lg w-full max-w-md"
 			>
 				<h2 className="text-2xl font-bold mb-6 text-center">
-					Add A New Club
+					Add A New Member
 				</h2>
-				<div className="flex flex-col gap-4">
-					<LabelInputContainer>
-						<Label htmlFor="clubname">Club Name</Label>
-						<Input
-							id="clubname"
-							placeholder="Enter Club Name"
-							type="text"
-							value={clubName}
-							onChange={(e) => setClubName(e.target.value)}
-						/>
-					</LabelInputContainer>
-					<LabelInputContainer className="">
-						<Label htmlFor="email">
-							Club President&apos;s Email
-						</Label>
+
+				<div className="flex flex-col gap-4 mb-4">
+					<LabelInputContainer className="mb-4">
+						<Label htmlFor="email">Email</Label>
 						<Input
 							id="email"
-							placeholder="Enter President's Email"
+							placeholder="Enter Email"
 							type="email"
 							value={presidentEmail}
 							onChange={(e) => setPresidentEmail(e.target.value)}
 						/>
 					</LabelInputContainer>
-					<LabelInputContainer className="mb-4">
-						<Label htmlFor="email_instructor">
-							Club Instructor&apos;s Email
-						</Label>
-						<Input
-							id="email_instructor"
-							placeholder="Enter Instructor's Email"
-							type="email"
-							value={instructorEmail}
-							onChange={(e) => setInstructorEmail(e.target.value)}
-						/>
-					</LabelInputContainer>
+					<Label htmlFor="Designation">Designation</Label>
+					<select
+						title="Designation"
+						id="Designation"
+						value={designation}
+						onChange={(e) => setDesignation(e.target.value)}
+						className="bg-zinc-900 text-white rounded-md h-10 px-2"
+					>
+						<option value="president">President</option>
+						<option value="vicepresident">Vice President</option>
+						<option value="generalsecretary">
+							General Secretary
+						</option>
+						<option value="treasurer">Treasurer</option>
+					</select>
 				</div>
+
 				{loading && (
 					<div className="w-full flex justify-center">
 						<Spin />

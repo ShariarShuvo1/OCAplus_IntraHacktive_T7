@@ -5,6 +5,7 @@ export type Roles =
 	| "president"
 	| "vicepresident"
 	| "generalsecretary"
+	| "instructor"
 	| "treasurer";
 
 declare global {
