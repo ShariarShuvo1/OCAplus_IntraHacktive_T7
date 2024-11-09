@@ -71,6 +71,7 @@ export default function Rooms() {
 							value={roomNumber}
 							onChange={(e) => setRoomNumber(e.target.value)}
 							className="p-2 rounded-lg text-black"
+							autoFocus={true}
 						/>
 						{saveLoading && (
 							<div className="flex px-8 items-center gap-2">
@@ -98,7 +99,7 @@ export default function Rooms() {
 			</header>
 			<div className="w-full h-full pb-16">
 				<div className="w-full h-full mx-auto px-2 md:px-8">
-					<CardEffect rooms={rooms} />
+					<CardEffect setRooms={setRooms} rooms={rooms} />
 				</div>
 			</div>
 		</main>
