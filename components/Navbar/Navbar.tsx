@@ -25,9 +25,14 @@ const Navbar = () => {
 						</Link>
 					</div>
 					<div className="hidden md:flex items-center space-x-4">
+						<Link href="/clubs" className="hover:text-gray-400">
+							Clubs
+						</Link>
+
 						<Link href="/events" className="hover:text-gray-400">
 							Events
 						</Link>
+
 						{isSignedIn && (
 							<Link
 								href="/dashboard"
@@ -65,6 +70,12 @@ const Navbar = () => {
 			</div>
 			{isOpen && (
 				<div className="md:hidden bg-gray-800">
+					<Link
+						href="/clubs"
+						className="block px-4 py-2 hover:bg-gray-700"
+					>
+						Clubs
+					</Link>
 					<Link
 						href="/events"
 						className="block px-4 py-2 hover:bg-gray-700"

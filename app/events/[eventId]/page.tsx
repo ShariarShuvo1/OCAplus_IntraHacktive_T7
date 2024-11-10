@@ -116,7 +116,7 @@ export default function EventPage() {
 	};
 
 	return (
-		<div className="text-gray-100 w-full bg-gray-900 h-full container-class overflow-y-scroll">
+		<div className="text-gray-100 xl:px-96 w-full bg-gray-900 h-full container-class overflow-y-scroll">
 			<div className="w-full p-6 flex justify-center">
 				<div className="relative w-full h-72 md:h-96">
 					<img
@@ -194,6 +194,36 @@ export default function EventPage() {
 								$
 								{event?.budget.reduce(
 									(acc, item) => acc + item.proposedAmount,
+									0
+								)}
+							</p>
+						</div>
+					</div>
+					<div className="flex gap-4 items-center">
+						<div className="">
+							<p className="text-lg ">Total Approved</p>
+						</div>
+						<div className="text-violet-600 text-2xl font-bold">
+							<p>
+								$
+								{event?.budget.reduce(
+									(acc, item) =>
+										acc + (item.approvedAmount || 0),
+									0
+								)}
+							</p>
+						</div>
+					</div>
+					<div className="flex gap-4 items-center">
+						<div className="">
+							<p className="text-lg ">Total Spent</p>
+						</div>
+						<div className="text-violet-600 text-2xl font-bold">
+							<p>
+								$
+								{event?.budget.reduce(
+									(acc, item) =>
+										acc + (item.spentAmount || 0),
 									0
 								)}
 							</p>

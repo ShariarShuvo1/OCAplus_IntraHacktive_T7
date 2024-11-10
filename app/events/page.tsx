@@ -97,7 +97,7 @@ export default function EventPage() {
 									</div>
 								)}
 								<div>
-									<Link href={`/club/${event.club._id}`}>
+									<Link href={`/clubs/${event.club._id}`}>
 										<p className="text-lg font-semibold hover:text-gray-300 text-white cursor-pointer">
 											{event.club.clubName}
 										</p>
