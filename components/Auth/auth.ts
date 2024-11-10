@@ -12,3 +12,20 @@ export const loginUser = async (uid: string) => {
 		console.error("Login failed", error);
 	}
 };
+
+export const signupUser = async (uid: string, name: string) => {
+	try {
+		const user = new CometChat.User(uid);
+		user.setName(name);
+
+		const createdUser = await CometChat.createUser(
+			user,
+			"15f93f0e0cec672112b49ceb06688107f81a6a70"
+		);
+
+		console.log("Signup successful:", createdUser);
+		return createdUser;
+	} catch (error) {
+		console.error("Signup failed", error);
+	}
+};

@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { Spin } from "antd";
 
 import { useState } from "react";
+import { signupUser } from "@/components/Auth/auth";
 
 export default function AddClub() {
 	const [clubName, setClubName] = useState("");
@@ -32,6 +33,9 @@ export default function AddClub() {
 				setError("");
 				setClubName("");
 				setPresidentEmail("");
+				setInstructorEmail("");
+				signupUser(presidentEmail, presidentEmail);
+				signupUser(instructorEmail, instructorEmail);
 			} else {
 				setError(data.message);
 				setSuccess("");

@@ -5,12 +5,13 @@ import { loginUser } from "@/components/Auth/auth";
 import { useUser } from "@clerk/nextjs";
 
 const ChatPage = () => {
+	const { user } = useUser();
+
 	useEffect(() => {
-		const { user } = useUser();
 		if (user?.id) {
 			loginUser(user.id);
 		}
-	}, []);
+	}, [user]); // Adding user as a dependency
 
 	return (
 		<div className="chat-container">
