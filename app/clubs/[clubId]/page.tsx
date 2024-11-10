@@ -119,7 +119,7 @@ export default function ClubPage() {
 	const formerMembers = club?.members.filter((member) => member.leavedAt);
 
 	return (
-		<div className="bg-gray-900 text-gray-100 p-8 min-h-screen container-class overflow-y-auto">
+		<div className=" text-gray-100 p-8 h-full container-class overflow-y-auto">
 			<div className="flex flex-col items-center space-y-6">
 				<div className="flex items-center space-x-4">
 					{club?.logo ? (

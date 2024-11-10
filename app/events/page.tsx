@@ -45,7 +45,7 @@ export default function EventPage() {
 	}, []);
 
 	return (
-		<div className="h-full bg-gray-900 text-gray-100 p-8">
+		<div className="h-full text-gray-100 p-8">
 			{loading && <Spin fullscreen size="large" />}
 			<div className="grid gap-8 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 container-class overflow-y-scroll h-full">
 				{events.map((event, index) => (

@@ -117,7 +117,7 @@ export default function EventPage() {
 	};
 
 	return (
-		<div className="text-gray-100 xl:px-96 w-full bg-gray-900 h-full container-class overflow-y-scroll">
+		<div className="text-gray-100 xl:px-96 w-full h-full container-class overflow-y-scroll">
 			<div className="w-full p-6 flex justify-center">
 				<div className="relative w-full h-72 md:h-96">
 					<img
