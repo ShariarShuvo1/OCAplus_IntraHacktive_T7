@@ -11,7 +11,7 @@ const ChatPage = () => {
 		if (user?.id) {
 			loginUser(user.id);
 		}
-	}, [user]); // Adding user as a dependency
+	}, [user]);
 
 	return (
 		<div className="chat-container">
