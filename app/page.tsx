@@ -61,7 +61,7 @@ const Home = () => {
 	if (loading) return <Spin size="large" fullscreen />;
 
 	return (
-		<div className=" text-gray-100 p-8 h-full space-y-20 overflow-y-auto">
+		<div className=" text-gray-100 container-class p-8 h-full space-y-20 overflow-y-auto">
 			<motion.section
 				className="text-center space-y-6"
 				initial={{ opacity: 0, y: -50 }}
@@ -93,7 +93,7 @@ const Home = () => {
 				<h2 className="text-3xl font-semibold text-center">
 					Upcoming Events
 				</h2>
-				<div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+				<div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 					{events.map((event) => (
 						<motion.div
 							key={event._id}

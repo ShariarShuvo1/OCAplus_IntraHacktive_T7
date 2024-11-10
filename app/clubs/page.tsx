@@ -3,6 +3,7 @@ import { Spin } from "antd";
 import { useEffect, useState } from "react";
 import { User, Calendar } from "lucide-react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import "./style.css";
 
 interface Club {
@@ -32,11 +33,18 @@ export default function Page() {
 		<div className="h-full overflow-hidden text-gray-100 p-8">
 			{loading && <Spin fullscreen size="large" />}
 
-			<div className="grid container-class overflow-y-scroll h-full gap-2 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 ">
-				{clubs.map((club: Club) => (
-					<div
+			<div className="grid container-class overflow-y-scroll h-full gap-4 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 ">
+				{clubs.map((club: Club, index) => (
+					<motion.div
 						key={club._id}
-						className="rounded-2xl h-fit bg-gray-800 shadow-xl p-6 space-y-4 "
+						className="rounded-2xl h-fit bg-gray-800 shadow-xl p-6 space-y-4"
+						initial={{ opacity: 0, scale: 0.9 }}
+						animate={{ opacity: 1, scale: 1 }}
+						transition={{ delay: index * 0.1, duration: 0.3 }}
+						whileHover={{
+							scale: 1.05,
+							transition: { duration: 0.2 },
+						}}
 					>
 						<div className="flex items-center space-x-4">
 							{club.logo ? (
@@ -65,7 +73,7 @@ export default function Page() {
 							<Calendar size={20} />
 							<p className="text-sm">{club.totalEvents} Events</p>
 						</div>
-					</div>
+					</motion.div>
 				))}
 			</div>
 		</div>

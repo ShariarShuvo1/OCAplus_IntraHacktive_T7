@@ -8,6 +8,7 @@ import { Bar } from "react-chartjs-2";
 import "chart.js/auto";
 import Link from "next/link";
 import "./style.css";
+import { SparklesCore } from "@/components/ui/sparkles";
 
 interface Budget {
 	_id: string;

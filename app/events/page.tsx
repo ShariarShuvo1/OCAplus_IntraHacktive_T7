@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { User } from "lucide-react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import "./[eventId]/style.css";
 
 interface Club {
@@ -47,10 +48,17 @@ export default function EventPage() {
 		<div className="h-full bg-gray-900 text-gray-100 p-8">
 			{loading && <Spin fullscreen size="large" />}
 			<div className="grid gap-8 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 container-class overflow-y-scroll h-full">
-				{events.map((event) => (
-					<div
+				{events.map((event, index) => (
+					<motion.div
 						key={event._id}
-						className=" rounded-2xl h-fit bg-gray-800 shadow-xl"
+						className="rounded-2xl h-fit bg-gray-800 shadow-xl"
+						initial={{ opacity: 0, scale: 0.9 }}
+						animate={{ opacity: 1, scale: 1 }}
+						transition={{ delay: index * 0.1, duration: 0.3 }}
+						whileHover={{
+							scale: 1.05,
+							transition: { duration: 0.2 },
+						}}
 					>
 						<img
 							src={event.cover}
@@ -108,7 +116,7 @@ export default function EventPage() {
 								</div>
 							</div>
 						</div>
-					</div>
+					</motion.div>
 				))}
 			</div>
 		</div>
