@@ -11,6 +11,8 @@
   "dependencies": {
     "@clerk/clerk-sdk-node": "^5.0.60",
     "@clerk/nextjs": "^6.2.1",
+    "@cometchat-pro/chat": "^3.0.13",
+    "@cometchat/chat-uikit-react": "^4.3.21",
     "@radix-ui/react-label": "^2.1.0",
     "@tabler/icons-react": "^3.21.0",
     "@tsparticles/engine": "^3.5.0",

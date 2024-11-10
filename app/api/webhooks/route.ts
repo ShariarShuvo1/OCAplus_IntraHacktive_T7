@@ -3,6 +3,7 @@ import { headers } from "next/headers";
 import { WebhookEvent } from "@clerk/nextjs/server";
 import User from "@/lib/models/User";
 import { connectToDB } from "@/lib/mongoDB";
+import { CometChat } from "@cometchat-pro/chat";
 
 export async function POST(req: Request) {
 	const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
@@ -68,6 +69,24 @@ export async function POST(req: Request) {
 				firstName,
 				lastName,
 			});
+		}
+
+		const appSettings = new CometChat.AppSettingsBuilder()
+			.setRegion(process.env.COMETCHAT_REGION)
+			.build();
+
+		try {
+			await CometChat.init(process.env.COMETCHAT_APP_ID, appSettings);
+
+			const chatUser = new CometChat.User(clerkID);
+			chatUser.setName(`${firstName} ${lastName}`);
+
+			await CometChat.createUser(
+				chatUser,
+				process.env.COMETCHAT_API_KEY as string
+			);
+		} catch (error) {
+			console.error("Error creating user:", error);
 		}
 	}
 
