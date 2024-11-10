@@ -35,7 +35,7 @@ export const POST = async (req: Request) => {
 		}
 
 		const { roomNumber } = await req.json();
-		// check if room already exists
+
 		const roomExists = await Room.findOne({ roomNumber });
 		if (roomExists) {
 			return NextResponse.json(

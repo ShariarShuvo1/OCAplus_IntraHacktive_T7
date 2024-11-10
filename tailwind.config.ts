@@ -45,7 +45,8 @@ const config = {
 	theme: {
 		extend: {
 			fontFamily: {
-				insightMelody: ["insight-melody", "sans-serif"],
+				grandBageur: ["grand-bageur", "sans-serif"],
+				rogan: ["rogan", "sans-serif"],
 			},
 			colors: {
 				background: "var(--background)",

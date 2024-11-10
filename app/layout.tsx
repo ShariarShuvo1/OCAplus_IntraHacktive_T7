@@ -30,9 +30,7 @@ export default function RootLayout({
 	return (
 		<ClerkProvider dynamic>
 			<html lang="en">
-				<body
-					className={`${geistSans.variable} ${geistMono.variable}  antialiased`}
-				>
+				<body className={`font-rogan antialiased`}>
 					<Navbar />
 					<HeroHighlight className="h-screen-no-nav w-full">
 						<ToasterProvider />

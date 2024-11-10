@@ -25,14 +25,8 @@ const Navbar = () => {
 						</Link>
 					</div>
 					<div className="hidden md:flex items-center space-x-4">
-						<Link href="/" className="hover:text-gray-400">
-							Home
-						</Link>
-						<Link href="/about" className="hover:text-gray-400">
-							About
-						</Link>
-						<Link href="/contact" className="hover:text-gray-400">
-							Contact
+						<Link href="/events" className="hover:text-gray-400">
+							Events
 						</Link>
 						{isSignedIn && (
 							<Link
@@ -72,22 +66,10 @@ const Navbar = () => {
 			{isOpen && (
 				<div className="md:hidden bg-gray-800">
 					<Link
-						href="/"
+						href="/events"
 						className="block px-4 py-2 hover:bg-gray-700"
 					>
-						Home
-					</Link>
-					<Link
-						href="/about"
-						className="block px-4 py-2 hover:bg-gray-700"
-					>
-						About
-					</Link>
-					<Link
-						href="/contact"
-						className="block px-4 py-2 hover:bg-gray-700"
-					>
-						Contact
+						Events
 					</Link>
 					{isSignedIn && (
 						<Link
