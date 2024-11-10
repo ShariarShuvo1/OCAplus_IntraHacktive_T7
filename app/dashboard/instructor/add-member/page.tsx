@@ -5,7 +5,6 @@ import { cn } from "@/lib/utils";
 import { Spin } from "antd";
 
 import { useState } from "react";
-import { signupUser } from "@/components/Auth/auth";
 
 export default function AddMember() {
 	const [presidentEmail, setPresidentEmail] = useState("");
@@ -24,7 +23,6 @@ export default function AddMember() {
 			});
 			const data = await res.json();
 			if (res.ok) {
-                signupUser(presidentEmail, presidentEmail);
 				setSuccess(data.message);
 				setError("");
 				setPresidentEmail("");

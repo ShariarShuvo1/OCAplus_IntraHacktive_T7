@@ -5,7 +5,6 @@ import { ClerkProvider } from "@clerk/nextjs";
 import Navbar from "@/components/Navbar/Navbar";
 import { HeroHighlight } from "@/components/ui/hero-highlight";
 import { ToasterProvider } from "@/components/Notification/ToasterProvider";
-import ChatLayout from "./ChatLayout";
 
 const geistSans = localFont({
 	src: "./fonts/GeistVF.woff",
@@ -33,7 +32,6 @@ export default function RootLayout({
 			<html lang="en">
 				<body className={`font-rogan antialiased`}>
 					<Navbar />
-					<ChatLayout />
 					<HeroHighlight className="h-screen-no-nav w-full">
 						<ToasterProvider />
 						{children}

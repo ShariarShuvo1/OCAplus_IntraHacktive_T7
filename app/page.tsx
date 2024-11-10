@@ -7,7 +7,6 @@ import toast from "react-hot-toast";
 import Link from "next/link";
 import "./globals.css";
 import Footer from "@/components/Footer/Footer";
-import { loginUser } from "@/components/Auth/auth";
 
 interface Event {
 	_id: string;
