@@ -4,6 +4,145 @@ import Event from "@/lib/models/Event";
 import Club from "@/lib/models/Club";
 import User from "@/lib/models/User";
 import { auth } from "@clerk/nextjs/server";
+import sendEmail from "@/app/api/mail/mail";
+
+async function sendEmailToInstructor(event: any, club: any, email: string) {
+	
+	const htmlContent = `
+    <html>
+      <head>
+        <style>
+          body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+          }
+          .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          }
+          .header {
+            text-align: center;
+            margin-bottom: 20px;
+          }
+          .header h1 {
+            color: #fff;
+            background-color: #4CAF50;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 28px;
+          }
+          .cover-image {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+          }
+          .section-title {
+            color: #333;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+          }
+          .section-content {
+            color: #555;
+            font-size: 16px;
+            margin-bottom: 20px;
+          }
+          .button {
+            display: inline-block;
+            padding: 12px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 10px;
+          }
+          .footer {
+            text-align: center;
+            font-size: 14px;
+            color: #888;
+            margin-top: 40px;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <div class="header">
+            <h1>New Event Created</h1>
+          </div>
+
+          <img src="${event.cover}" alt="Event Cover" class="cover-image" />
+          
+          <p>Dear Instructor,</p>
+          <p>A new event has been created by <strong>${
+				club.clubName
+			}</strong>. Below are the details:</p>
+          
+          <div class="section">
+            <div class="section-title">Event Name:</div>
+            <div class="section-content">${event.name}</div>
+          </div>
+
+          <div class="section">
+            <div class="section-title">Event Description:</div>
+            <div class="section-content">${event.description}</div>
+          </div>
+
+          <div class="section">
+            <div class="section-title">Event Objective:</div>
+            <div class="section-content">${event.objective}</div>
+          </div>
+
+          <div class="section">
+            <div class="section-title">Event Impact:</div>
+            <div class="section-content">${event.impact}</div>
+          </div>
+
+          <div class="section">
+            <div class="section-title">Start Date:</div>
+            <div class="section-content">${new Date(
+				event.startDate
+			).toLocaleDateString()}</div>
+          </div>
+
+          <div class="section">
+            <div class="section-title">End Date:</div>
+            <div class="section-content">${new Date(
+				event.endDate
+			).toLocaleDateString()}</div>
+          </div>
+
+          <div class="section">
+            <div class="section-title">Number of Attendees:</div>
+            <div class="section-content">${event.numberOfAttendees}</div>
+          </div>
+
+          <div class="section">
+            <div class="section-title">Club:</div>
+            <div class="section-content">${club.clubName}</div>
+          </div>
+
+          <div class="footer">
+            <p>If you have any questions, feel free to reach out to us.</p>
+            <a href="mailto:${email}" class="button">Contact Instructor</a>
+          </div>
+        </div>
+      </body>
+    </html>
+  `;
+
+	// Send the email to the instructor
+	await sendEmail(email, "New Event Created", htmlContent);
+}
 
 export const POST = async (req: Request) => {
 	try {
@@ -78,6 +217,16 @@ export const POST = async (req: Request) => {
 		});
 
 		await newEvent.save();
+
+		const instructor = await User.findOne({
+			role: "instructor",
+			clubID: club._id,
+		});
+
+		const instructorEmails = instructor?.email;
+
+		await sendEmailToInstructor(newEvent, club, instructorEmails);
+
 		return NextResponse.json({ message: "Event added successfully" });
 	} catch (err) {
 		return NextResponse.json(
@@ -143,7 +292,7 @@ export const GET = async (req: Request) => {
 			endDate: 1,
 		});
 
-        console.log(events);
+		console.log(events);
 
 		return NextResponse.json({ events });
 	} catch (err) {
